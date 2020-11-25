@@ -2,28 +2,27 @@ import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flash_chat/Components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
-
   static String id = 'Welcome Screen';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
-
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation animation;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      duration: Duration(seconds: 3),
-      vsync: this
-    );
-    animation = ColorTween(begin: Colors.black, end: Color(0xFF420707)).animate(controller);
+    controller =
+        AnimationController(duration: Duration(seconds: 3), vsync: this);
+    animation = ColorTween(begin: Colors.black, end: Color(0xFF630000))
+        .animate(controller);
     controller.forward();
     controller.addListener(() {
       setState(() {});
@@ -63,55 +62,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return LoginScreen();
-                        },
-                        transitionDuration: Duration(seconds: 2),
-                      ),
-                    );
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
+            RoundedButton(
+              'Log In',
+              Color(0xFF420707),
+              () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return LoginScreen();
+                    },
+                    transitionDuration: Duration(seconds: 2),
                   ),
-                ),
-              ),
+                );
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return RegistrationScreen();
-                        },
-                        transitionDuration: Duration(seconds: 2),
-                      ),
-                    );
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
+            RoundedButton(
+              'Register',
+              Color(0xFF420707),
+              () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return RegistrationScreen();
+                    },
+                    transitionDuration: Duration(seconds: 2),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),
