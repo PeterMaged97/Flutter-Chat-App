@@ -1,3 +1,4 @@
+import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             RoundedButton(
               'Log In',
-              Color(0xFF420707),
+              kSecondaryColor,
               () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
@@ -78,7 +79,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             RoundedButton(
               'Register',
-              Color(0xFF420707),
+              kSecondaryColor,
               () {
                 Navigator.of(context).push(
                   PageRouteBuilder(
