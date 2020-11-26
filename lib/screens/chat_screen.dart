@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatScreen extends StatefulWidget {
 
@@ -10,6 +11,29 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  User loggedInUser;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if(user != null){
+        loggedInUser = user;
+        print(user.email);
+      }
+    }catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,39 +47,41 @@ class _ChatScreenState extends State<ChatScreen> {
               }),
         ],
         title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        //backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      onChanged: (value) {
-                        //Do something with the user input.
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                decoration: kMessageContainerDecoration,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) {
+                          //Do something with the user input.
+                        },
+                        decoration: kMessageTextFieldDecoration,
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        //Implement send functionality.
                       },
-                      decoration: kMessageTextFieldDecoration,
+                      child: Text(
+                        'Send',
+                        style: kSendButtonTextStyle,
+                      ),
                     ),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      //Implement send functionality.
-                    },
-                    child: Text(
-                      'Send',
-                      style: kSendButtonTextStyle,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

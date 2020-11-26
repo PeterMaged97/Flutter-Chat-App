@@ -1,4 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flash_chat/screens/all_screens.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../constants.dart';
 
@@ -11,6 +14,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  String email;
+  String password;
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,18 +39,22 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {
+                  email = value;
+                },
                 decoration: kInputDecoration.copyWith(hintText: 'Enter Your Email')
             ),
             SizedBox(
               height: 8.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
+                textAlign: TextAlign.center,
+                obscureText: true,
+                onChanged: (value) {
+                  password = value;
+                },
                 decoration: kInputDecoration.copyWith(hintText: 'Enter Your Password')
             ),
             SizedBox(
@@ -56,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    //Implement login functionality.
+                    //Implement Login Functionality
                   },
                   minWidth: 200.0,
                   height: 42.0,
