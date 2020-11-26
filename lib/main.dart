@@ -18,7 +18,7 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: kSecondaryColor,
+      statusBarColor: kPrimaryColor,
       systemNavigationBarColor: Colors.white,
     ));
     return MaterialApp(
@@ -27,8 +27,6 @@ class FlashChat extends StatelessWidget {
         appBarTheme: AppBarTheme(
           color: kSecondaryColor,
           //shadowColor: kSecondaryColor,
-          elevation: 0,
-
         ),
         scaffoldBackgroundColor: kPrimaryColor,
         //primaryColor: kSecondaryColor,

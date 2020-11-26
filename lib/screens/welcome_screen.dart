@@ -22,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.initState();
     controller =
         AnimationController(duration: Duration(seconds: 3), vsync: this);
-    animation = ColorTween(begin: Colors.black, end: Color(0xFF630000))
+    animation = ColorTween(begin: Colors.black, end: kPrimaryColor)
         .animate(controller);
     controller.forward();
     controller.addListener(() {

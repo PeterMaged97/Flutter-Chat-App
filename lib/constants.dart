@@ -36,5 +36,6 @@ const InputDecoration kInputDecoration = InputDecoration(
   ),
 );
 
-const Color kPrimaryColor = Color(0xFF630000);
-const Color kSecondaryColor = Color(0xFF420707);
+const Color kPrimaryColor = Color(0xFF282b28);
+const Color kSecondaryColor = Color(0xFFd36135);
+const Color kTertiaryColor = Color(0xFFa24936);
