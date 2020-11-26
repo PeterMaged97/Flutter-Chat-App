@@ -17,7 +17,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCurrentUser();
   }
@@ -36,51 +35,59 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                //Implement logout functionality
-              }),
-        ],
-        title: Text('⚡️Chat'),
-        //backgroundColor: Colors.lightBlueAccent,
-      ),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                decoration: kMessageContainerDecoration,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        onChanged: (value) {
-                          //Do something with the user input.
+    return WillPopScope(
+      onWillPop: () async {
+        _auth.signOut();
+        Navigator.pop(context);
+        return;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: null,
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  _auth.signOut();
+                  Navigator.pop(context);
+                }),
+          ],
+          title: Text('⚡️Chat'),
+          //backgroundColor: Colors.lightBlueAccent,
+        ),
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  decoration: kMessageContainerDecoration,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value) {
+                            //Do something with the user input.
+                          },
+                          decoration: kMessageTextFieldDecoration,
+                        ),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          //Implement send functionality.
                         },
-                        decoration: kMessageTextFieldDecoration,
+                        child: Text(
+                          'Send',
+                          style: kSendButtonTextStyle,
+                        ),
                       ),
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                        //Implement send functionality.
-                      },
-                      child: Text(
-                        'Send',
-                        style: kSendButtonTextStyle,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
